@@ -1,0 +1,58 @@
+@import './colors';
+
+.input {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &.error {
+    .input__hr {
+      background-color: #ff0000;
+      width: 100%;
+    }
+  }
+
+  input[type="text"], input[type="password"], input[type="email"] {
+    width: 100%;
+    padding: 10px 0 10px 10px;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    outline: none;
+    border: none;
+    border-bottom: solid 1px #cecfd0;
+
+    font-family: SegoeUI, sans-serif;
+    font-weight: normal;
+    color: @black;
+
+    font-size: 18px;
+
+    &::-webkit-input-placeholder {
+      color: #cecfd0;
+    }
+
+    &::-moz-input-placeholder {
+      color: #cecfd0;
+    }
+
+    &::-ms-input-placeholder {
+      color: #cecfd0;
+    }
+
+    &:focus + .input__hr {
+      width: 100%;
+    }
+  }
+
+  .input__hr {
+    position: absolute;
+    bottom: 0;
+    width: 0%;
+    height: 1px;
+    background-color: @light-purple;
+
+    left: 50%;
+    transform: translateX(-50%);
+    transition: 0.2s ease width;
+  }
+}

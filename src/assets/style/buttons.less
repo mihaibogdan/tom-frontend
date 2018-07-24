@@ -1,0 +1,33 @@
+@import './colors';
+
+a {
+  text-decoration: none;
+  outline: none;
+  font-size: 14px;
+  color: #43425d;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.btn {
+  -webkit-appearance: none;
+  border: solid 1px #43425d;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #43425d;
+
+  padding: 8px 30px;
+
+  &.btn--bigger {
+    min-width: 140px;
+  }
+
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #43425d;
+    color: @white;
+  }
+}
