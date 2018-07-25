@@ -4,28 +4,28 @@
   <form class="form" #registerForm="ngForm" (ngSubmit)="register(registerForm)">
     <div class="row">
       <div class="input" [ngClass]="{ error: firstName.invalid && registerForm.submitted }">
-        <input class="purple-placeholder"type="text" placeholder="First name" name="firstName" [(ngModel)]="user.firstName" #firstName="ngModel" required>
+        <input type="text" placeholder="First name" name="firstName" [(ngModel)]="user.firstName" #firstName="ngModel" required>
         <span class="input__hr"></span>
       </div>
       <div class="input" [ngClass]="{ error: lastName.invalid && registerForm.submitted }">
-        <input class="purple-placeholder"type="text" placeholder="Last name" name="lastName" [(ngModel)]="user.lastName" #lastName="ngModel" required>
+        <input type="text" placeholder="Last name" name="lastName" [(ngModel)]="user.lastName" #lastName="ngModel" required>
         <span class="input__hr"></span>
       </div>
     </div>
     <div class="input" [ngClass]="{ error: username.invalid && registerForm.submitted }">
-      <input class="purple-placeholder" type="text" placeholder="Username" name="username" [(ngModel)]="user.username" #username="ngModel" required>
+      <input type="text" placeholder="Username" name="username" [(ngModel)]="user.username" #username="ngModel" required>
       <span class="input__hr"></span>
     </div>
     <div class="input" [ngClass]="{ error: email.invalid && registerForm.submitted }">
-      <input class="purple-placeholder" type="text" placeholder="Email" name="email" [(ngModel)]="user.email" #email="ngModel" required email>
+      <input type="text" placeholder="Email" name="email" [(ngModel)]="user.email" #email="ngModel" required email>
       <span class="input__hr"></span>
     </div>
     <div class="input" [ngClass]="{ error: password.invalid && registerForm.submitted }">
-      <input class="purple-placeholder" type="text" placeholder="Password" name="password" [(ngModel)]="user.password" #password="ngModel" required>
+      <input type="text" placeholder="Password" name="password" [(ngModel)]="user.password" #password="ngModel" required>
       <span class="input__hr"></span>
     </div>
     <div class="input" [ngClass]="{ error: confirmPassword.invalid && registerForm.submitted }">
-      <input class="purple-placeholder" type="text" placeholder="Confirm password" name="confirmPassword" [(ngModel)]="user.confirmPassword" #confirmPassword="ngModel" required validateEqual="password">
+      <input type="text" placeholder="Confirm password" name="confirmPassword" [(ngModel)]="user.confirmPassword" #confirmPassword="ngModel" required validateEqual="password">
       <span class="input__hr"></span>
     </div>
 
