@@ -1,19 +1,50 @@
-<div class="box">
+<div class="box" *ngIf="step === 'username'" [@FadeInOrOut]>
   <h1 class="box__heading">COMPANY</h1>
   <p class="box__welcome-message">Welcome back, please login to your account.</p>
-  <form action="">
-    <div class="input">
-      <input type="text" placeholder="Email">
+  <form #usernameForm="ngForm" (ngSubmit)="enterPassword(usernameForm)">
+    <div class="input" [ngClass]="{ error: email.invalid && usernameForm.submitted }">
+      <input #emailInput type="text" placeholder="Email" name="email" [(ngModel)]="user.email" #email="ngModel" required email>
       <span class="input__hr"></span>
     </div>
 
-    <a href="#" class="signup-reference">No account? Create one!</a>
+    <a href="#" class="link signup-reference">No account? Create one!</a>
 
     <button class="btn btn--bigger">Next</button>
   </form>
 
   <div class="legal">
-    <a href="">Terms of use</a>.
-    <a href="">Privacy Policy</a>
+    <a class="link" href="">Terms of use</a>.
+    <a class="link" href="">Privacy Policy</a>
+  </div>
+</div>
+
+<div class="box" *ngIf="step === 'password'" [@FadeInOrOut]>
+  <h1 class="box__heading">COMPANY</h1>
+  <p class="box__welcome-message">Username</p>
+
+  <h2>Enter password</h2>
+
+  <form #passwordForm="ngForm" (ngSubmit)="login(passwordForm)">
+    <div class="input" [ngClass]="{ error: password.invalid && passwordForm.submitted }">
+      <input #passwordInput type="password" name="password" [(ngModel)]="user.password" #password="ngModel" placeholder="Password" required>
+      <span class="input__hr"></span>
+    </div>
+
+    <div class="checkbox">
+      <input id="stay-signed-in" type="checkbox">
+      <label for="stay-signed-in">Keep me signed in</label>
+    </div>
+
+    <div class="column">
+      <a class="link" href="#">Forgot my password</a>
+      <a class="link" (click)="enterUsername()">Sign in with a different account</a>
+    </div>
+
+    <button class="btn btn--bigger">Sign in</button>
+  </form>
+
+  <div class="legal">
+    <a class="link" href="">Terms of use</a>.
+    <a class="link" href="">Privacy Policy</a>
   </div>
 </div>

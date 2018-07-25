@@ -5,21 +5,22 @@
 :host {
   min-width: 100vw;
   min-height: 100vh;
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
+  display: block;
 
   background: linear-gradient(to left bottom, @dark-purple 0%, @dark-purple 20%, @light-purple);
 }
 
 .box {
   background-color: @white;
-  padding: 25px 80px;
-  min-width: 345px;
+  padding: 25px 70px;
+  min-width: 340px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   .box__heading {
-    margin: 0 0 40px;
+    margin: 0 0 30px;
     color: #43425d;
     letter-spacing: 8px;
     text-align: center;
@@ -28,6 +29,21 @@
   .box__welcome-message {
     text-align: center;
     margin-bottom: 40px;
+  }
+
+  h2 {
+    font-weight: 400;
+    margin-bottom: 25px;
+  }
+
+  .checkbox {
+    margin-top: 25px;
+  }
+
+  .column {
+    a {
+      margin-top: 20px;
+    }
   }
 
   .signup-reference {
