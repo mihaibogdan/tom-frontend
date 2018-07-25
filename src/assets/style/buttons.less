@@ -4,7 +4,7 @@
   text-decoration: none;
   outline: none;
   font-size: 14px;
-  color: #43425d;
+  color: @purple;
   cursor: pointer;
 
   &:hover {
@@ -14,22 +14,31 @@
 
 .btn {
   -webkit-appearance: none;
-  border: solid 1px #43425d;
+  border: solid 1px @purple;
   border-radius: 4px;
   background-color: transparent;
-  color: #43425d;
+  color: @purple;
 
-  padding: 8px 30px;
+  padding: 10px 30px;
   outline: none;
 
   &.btn--bigger {
-    min-width: 140px;
+    min-width: 150px;
   }
 
   transition: all 0.3s ease;
 
-  &:hover {
-    background-color: #43425d;
+  &.btn--purple {
+    background-color: @purple;
+    color: @white;
+
+    &:hover {
+      background-color: @light-purple;
+    }
+  }
+
+  &:not(.btn--purple):hover {
+    background-color: @purple;
     color: @white;
   }
 }

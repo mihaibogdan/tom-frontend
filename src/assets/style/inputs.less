@@ -7,7 +7,7 @@
 
   &.error {
     .input__hr {
-      background-color: #ff0000;
+      background-color: @red;
       width: 100%;
     }
   }
@@ -39,6 +39,20 @@
       color: #cecfd0;
     }
 
+    &.purple-placeholder {
+      &::-webkit-input-placeholder {
+        color: @purple;
+      }
+
+      &::-moz-input-placeholder {
+        color: @purple;
+      }
+
+      &::-ms-input-placeholder {
+        color: @purple;
+      }
+    }
+
     &:focus + .input__hr {
       width: 100%;
     }
@@ -61,9 +75,15 @@
   position: relative;
   text-align: left;
 
+  &.error {
+    label {
+      color: @red;
+    }
+  }
+
   label {
     cursor: pointer;
-    color: #43425d;
+    color: @purple;
     font-size: 14px;
     &:before, &:after {
       content: "";
@@ -78,7 +98,7 @@
       height: 15px;
       box-sizing: border-box;
       background: #fff;
-      border: 1px solid #43425d;
+      border: 1px solid @purple;
       border-radius: 2px;
       cursor: pointer;
       transition: background .3s;
@@ -96,7 +116,7 @@
 
     &:checked {
       + label:before{
-        background: #43425d;
+        background: @purple;
       }
       + label:after {
 

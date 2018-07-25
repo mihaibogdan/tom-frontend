@@ -3,10 +3,11 @@
 @import "../../../assets/style/buttons";
 
 :host {
-  min-width: 100vw;
   min-height: 100vh;
-  display: block;
+  display: flex;
 
+  align-items: center;
+  justify-content: center;
   background: linear-gradient(to left bottom, @dark-purple 0%, @dark-purple 20%, @light-purple);
 }
 
@@ -14,10 +15,9 @@
   background-color: @white;
   padding: 25px 70px;
   width: 370px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
 
   .box__heading {
     margin: 0 0 30px;
@@ -31,35 +31,47 @@
     margin-bottom: 40px;
   }
 
-  h2 {
-    font-weight: 400;
-    margin-bottom: 25px;
+  .form {
+    .row {
+      display: flex;
+
+      .input {
+        flex-grow: 1;
+        margin-top: 0;
+
+        &:last-child {
+          margin-left: 30px;
+        }
+      }
+    }
+
+    .input {
+      margin-top: 20px;
+
+      input {
+        font-size: 16px;
+      }
+    }
   }
 
   .checkbox {
     margin-top: 25px;
   }
 
-  .column {
-    a {
-      margin-top: 20px;
-    }
-  }
-
-  .signup-reference {
-    margin-top: 50px;
-    display: inline-block;
-  }
-
   .btn {
     display: block;
     margin-left: auto;
+    margin-right: auto;
     margin-top: 35px;
+  }
+
+  .login {
+    margin: 30px auto 0 auto;
   }
 
   .legal {
     display: block;
-    margin-top: 40px;
+    margin-top: 10px;
     text-align: center;
   }
 }

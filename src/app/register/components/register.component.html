@@ -1,0 +1,44 @@
+<div class="box" *ngIf="showForm" [@FadeInOrOut]>
+  <h1 class="box__heading">COMPANY</h1>
+  <p class="box__welcome-message">Welcome, please create your account.</p>
+  <form class="form" #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+    <div class="row">
+      <div class="input" [ngClass]="{ error: firstName.invalid && registerForm.submitted }">
+        <input class="purple-placeholder"type="text" placeholder="First name" name="firstName" [(ngModel)]="user.firstName" #firstName="ngModel" required>
+        <span class="input__hr"></span>
+      </div>
+      <div class="input" [ngClass]="{ error: lastName.invalid && registerForm.submitted }">
+        <input class="purple-placeholder"type="text" placeholder="Last name" name="lastName" [(ngModel)]="user.lastName" #lastName="ngModel" required>
+        <span class="input__hr"></span>
+      </div>
+    </div>
+    <div class="input" [ngClass]="{ error: username.invalid && registerForm.submitted }">
+      <input class="purple-placeholder" type="text" placeholder="Username" name="username" [(ngModel)]="user.username" #username="ngModel" required>
+      <span class="input__hr"></span>
+    </div>
+    <div class="input" [ngClass]="{ error: email.invalid && registerForm.submitted }">
+      <input class="purple-placeholder" type="text" placeholder="Email" name="email" [(ngModel)]="user.email" #email="ngModel" required email>
+      <span class="input__hr"></span>
+    </div>
+    <div class="input" [ngClass]="{ error: password.invalid && registerForm.submitted }">
+      <input class="purple-placeholder" type="text" placeholder="Password" name="password" [(ngModel)]="user.password" #password="ngModel" required>
+      <span class="input__hr"></span>
+    </div>
+    <div class="input" [ngClass]="{ error: confirmPassword.invalid && registerForm.submitted }">
+      <input class="purple-placeholder" type="text" placeholder="Confirm password" name="confirmPassword" [(ngModel)]="user.confirmPassword" #confirmPassword="ngModel" required validateEqual="password">
+      <span class="input__hr"></span>
+    </div>
+
+    <div class="checkbox"  [ngClass]="{ error: agreeTerms.invalid && registerForm.submitted }">
+      <input id="accept-terms" type="checkbox" name="agreeTerms" [(ngModel)]="user.agreeTerms" #agreeTerms="ngModel" required>
+      <label for="accept-terms">I agree with terms and conditions</label>
+    </div>
+
+    <button class="btn btn--bigger btn--purple">Create</button>
+  </form>
+  <a [routerLink]="['/login']" class="link login">Already have an account? Sign in.</a>
+  <div class="legal">
+    <a class="link" href="">Terms of use</a>.
+    <a class="link" href="">Privacy Policy</a>
+  </div>
+</div>
