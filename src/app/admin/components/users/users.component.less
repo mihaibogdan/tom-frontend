@@ -1,5 +1,23 @@
-@import '../../../../assets/style/content.less';
+@import '../../../../assets/style/page.less';
+@import '../../../../assets/style/buttons.less';
+@import '../../../../assets/style/inputs.less';
+@import '../../../../assets/style/table.less';
 
 :host {
   flex-grow: 1;
+}
+
+.content {
+  .buttons {
+    display: flex;
+    padding: 0 15px;
+
+    .btn {
+      margin-right: 10px;
+    }
+  }
+
+  .table {
+    margin-top: 15px;
+  }
 }
