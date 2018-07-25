@@ -9,6 +9,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'forgot-password', component: ForgotPasswordComponent},
   { path: 'register', loadChildren: './register/modules/register.module#RegisterModule'},
+  { path: 'admin', loadChildren: './admin/modules/admin.module#AdminModule'},
 
   { path: '**', redirectTo: 'login' }
 ];

@@ -1,0 +1,42 @@
+<div class="menu">
+  <div class="heading">COMPANY</div>
+  <ul class="list">
+    <li class="list__item">
+      <a>
+        <span class="icon-dashboard"></span>
+        Dashboard
+      </a>
+    </li>
+    <li class="list__item">
+      <a>
+        <span class="icon-public"></span>
+        Public
+      </a>
+    </li>
+    <li class="list__item">
+      <a>
+        <span class="icon-private"></span>
+        Private
+      </a>
+    </li>
+    <li class="list__item">
+      <a>
+        <span class="icon-settings"></span>
+        Settings
+      </a>
+    </li>
+    <li class="list__item">
+      <a>
+        <span class="icon-help-center"></span>
+        Help center
+      </a>
+    </li>
+    <li class="list__item" >
+      <a [routerLink]="['/admin/users']" [routerLinkActive]="['active']">
+        <span class="icon-user"></span>
+        Users
+      </a>
+    </li>
+  </ul>
+</div>
+<router-outlet></router-outlet>
