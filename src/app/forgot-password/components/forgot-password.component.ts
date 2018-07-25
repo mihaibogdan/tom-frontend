@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FadeInOrOut } from '../../../shared/animations/animations';
+import { FadeInOrOut } from '../../shared/animations/animations';
 
 @Component({
   selector: 'app-forgot-password',

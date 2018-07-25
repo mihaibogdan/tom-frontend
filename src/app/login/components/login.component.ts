@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
-import { FadeInOrOut } from '../../../shared/animations/animations';
+import { FadeInOrOut } from '../../shared/animations/animations';
 
 @Component({
   selector: 'app-login',

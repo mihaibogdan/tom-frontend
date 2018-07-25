@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { EqualValidator } from '../../shared/validators/validateEqual';
+import { EqualValidator } from '../validators/validateEqual';
 
 @NgModule({
   declarations: [

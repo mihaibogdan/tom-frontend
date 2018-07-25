@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { User } from '../../../shared/models/user.model';
-import { FadeInOrOut } from '../../../shared/animations/animations';
+import { User } from '../../shared/models/user.model';
+import { FadeInOrOut } from '../../shared/animations/animations';
 
 @Component({
   selector: 'app-register',

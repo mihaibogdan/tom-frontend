@@ -6,7 +6,7 @@ import { RegisterRoutingModule } from './register-routing.module'
 
 
 import { RegisterComponent } from '../components/register.component';
-import { SharedModule } from '../../../shared/modules/shared.module';
+import { SharedModule } from '../../shared/modules/shared.module';
 
 @NgModule({
   declarations: [
