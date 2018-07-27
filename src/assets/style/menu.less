@@ -1,7 +1,7 @@
 @import './colors.less';
 
-@menu-width: 270px;
-@menu-padding-left: 15px;
+@menu-width: 260px;
+@menu-padding-left: 20px;
 
 .menu {
   flex: 0 0 @menu-width;
@@ -18,14 +18,14 @@
   background-color: @purple;
 
   .heading {
-    height: 70px;
+    height: 69px;
     padding-left: @menu-padding-left;
 
     font-weight: bold;
-    letter-spacing: 8px;
+    letter-spacing: 2px;
 
     color: @white;
-    background-color: @black;
+    background-color: #3c3a54;
     vertical-align: center;
     display: flex;
     align-items: center;
@@ -35,7 +35,6 @@
     display: flex;
     flex-direction: column;
     padding-left: 0;
-    padding-top: 10px;
     margin: 0;
 
     .list__item {
@@ -46,7 +45,7 @@
         position: relative;
         display: block;
         box-sizing: border-box;
-        padding: 15px 0 15px @menu-padding-left;
+        padding: 17px 0 17px @menu-padding-left;
         color: @white;
         text-decoration: none;
 
@@ -54,10 +53,11 @@
 
         span {
           margin-right: 3px;
+          color: #a6a5c0;
         }
 
         &.active {
-          background-color: @black;
+          background-color: #3c3a54;
           &:before {
             opacity: 1;
           }
