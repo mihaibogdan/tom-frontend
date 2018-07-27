@@ -9,4 +9,51 @@
       <div class="avatar"></div>
     </div>
   </div>
+
+  <div class="settings content-wrapper">
+    <h1>Profile</h1>
+    <div class="content">
+      <div class="profile">
+        <div class="row">
+          <span class="section-name">[Username]</span>
+          <div class="characteristics">
+            <span>Active</span>
+            <span>User</span>
+          </div>
+        </div>
+        <hr>
+
+        <div class="row vertical-align-top">
+          <div class="photo"></div>
+          <div class="column details">
+            <form #nameForm="ngForm" (ngSubmit)="updateUser(nameForm, 'name')" class="row">
+              <span class="name" *ngIf="!inlineEditing['name']">John Doe</span>
+
+              <div class="input small" *ngIf="inlineEditing['name']" [ngClass]="{ error: name.invalid && nameForm.submitted }">
+                <input #nameInput type="text" placeholder="Full name" name="name" [(ngModel)]="user.name" #name="ngModel" required>
+                <span class="input__hr"></span>
+              </div>
+              <button class="btn-with-icon">
+                <span class="icon-edit"></span>
+                Edit
+              </button>
+            </form>
+            <form #emailForm="ngForm" (ngSubmit)="updateUser(emailForm, 'email')" class="row">
+              <span class="email" *ngIf="!inlineEditing['email']">johndoe@test.com</span>
+
+              <div class="input small" *ngIf="inlineEditing['email']" [ngClass]="{ error: email.invalid && emailForm.submitted }">
+                <input #emailInput type="text" placeholder="Email" name="email" [(ngModel)]="user.email" #email="ngModel" required email>
+                <span class="input__hr"></span>
+              </div>
+              <button class="btn-with-icon">
+                <span class="icon-edit"></span>
+                Edit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
