@@ -5,7 +5,7 @@
       <input type="text" placeholder="Search products">
     </div>
     <div class="user">
-      <span class="name">John Doe</span>
+      <span class="name">{{user.firstName}} {{user.lastName}}</span>
       <div class="avatar"></div>
     </div>
   </div>
@@ -15,7 +15,7 @@
     <div class="content">
       <div class="profile">
         <div class="row">
-          <span class="section-name">[Username]</span>
+          <span class="section-name">{{user.username}}</span>
           <div class="characteristics">
             <span>Active</span>
             <span>User</span>
@@ -27,7 +27,7 @@
           <div class="photo"></div>
           <div class="column details">
             <form #nameForm="ngForm" (ngSubmit)="updateUser(nameForm, 'name')" class="row">
-              <span class="name" *ngIf="!inlineEditing['name']">John Doe</span>
+              <span class="name" *ngIf="!inlineEditing['name']">{{user.firstName}} {{user.lastName}}</span>
 
               <div class="input small" *ngIf="inlineEditing['name']" [ngClass]="{ error: name.invalid && nameForm.submitted }">
                 <input #nameInput type="text" placeholder="Full name" name="name" [(ngModel)]="user.name" #name="ngModel" required>
@@ -39,7 +39,7 @@
               </button>
             </form>
             <form #emailForm="ngForm" (ngSubmit)="updateUser(emailForm, 'email')" class="row">
-              <span class="email" *ngIf="!inlineEditing['email']">johndoe@test.com</span>
+              <span class="email" *ngIf="!inlineEditing['email']">{{user.email}}</span>
 
               <div class="input small" *ngIf="inlineEditing['email']" [ngClass]="{ error: email.invalid && emailForm.submitted }">
                 <input #emailInput type="text" placeholder="Email" name="email" [(ngModel)]="user.email" #email="ngModel" required email>

@@ -21,11 +21,11 @@
       <span class="input__hr"></span>
     </div>
     <div class="input" [ngClass]="{ error: password.invalid && registerForm.submitted }">
-      <input type="text" placeholder="Password" name="password" [(ngModel)]="user.password" #password="ngModel" required>
+      <input type="password" placeholder="Password" name="password" [(ngModel)]="user.password" #password="ngModel" required>
       <span class="input__hr"></span>
     </div>
     <div class="input" [ngClass]="{ error: confirmPassword.invalid && registerForm.submitted }">
-      <input type="text" placeholder="Confirm password" name="confirmPassword" [(ngModel)]="user.confirmPassword" #confirmPassword="ngModel" required validateEqual="password">
+      <input type="password" placeholder="Confirm password" name="confirmPassword" [(ngModel)]="user.confirmPassword" #confirmPassword="ngModel" required validateEqual="password">
       <span class="input__hr"></span>
     </div>
 
