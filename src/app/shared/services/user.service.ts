@@ -36,4 +36,18 @@ export class UserService {
         );
     });
   };
+
+  public getUsers = (params = {}) => {
+    return new Promise((resolve, reject) => {
+      this.http.get(`${environment.API_URL}/users`, { params })
+        .subscribe(
+          (res: any) => {
+            resolve(res);
+          },
+          (err: any) => {
+            reject(err.error);
+          }
+        );
+    });
+  };
 }
