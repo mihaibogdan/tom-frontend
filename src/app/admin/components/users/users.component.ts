@@ -42,4 +42,16 @@ export class UsersComponent implements OnInit {
     })
   };
 
+  private updateUsers = (prop) => {
+    let usersToUpdate = _.filter(this.users, 'selected');
+
+    _.each(usersToUpdate, (user) => {
+      this.userService.updateUser(user.id, prop).then((res: any) => {
+        user = _.find(this.users, {id: user.id});
+        user.privilege = PRIVILEGES[res.role];
+        user.status = IS_ACTIVE[res.active];
+      })
+    });
+  };
+
 }
