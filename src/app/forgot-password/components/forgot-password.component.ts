@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { FadeInOrOut } from '../../shared/animations/animations';
 
+import { AuthService } from '../../shared/services/auth.service';
+
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -12,12 +14,16 @@ export class ForgotPasswordComponent implements OnInit {
   public showForm = true;
   public userEmail = '';
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
   public resetPassword = (form) => {
     if (!form.valid) return;
+
+    this.authService.resetPassword(form.value.email)
+      .then(() => {})
+      .catch((err) => {});
   }
 }

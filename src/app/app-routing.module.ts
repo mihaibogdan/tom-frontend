@@ -4,13 +4,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/components/login.component';
 import { ForgotPasswordComponent } from './forgot-password/components/forgot-password.component';
 
+import { AuthGuard } from './shared/services/auth-guard.service';
+
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent},
-  { path: 'forgot-password', component: ForgotPasswordComponent},
-  { path: 'register', loadChildren: './register/modules/register.module#RegisterModule'},
-  { path: 'admin', loadChildren: './admin/modules/admin.module#AdminModule'},
-  { path: 'user', loadChildren: './user/modules/user.module#UserModule'},
+  { path: 'login', component: LoginComponent,  canActivate: [AuthGuard]},
+  { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [AuthGuard]},
+  { path: 'register', loadChildren: './register/modules/register.module#RegisterModule', canActivate: [AuthGuard]},
+  { path: 'admin', loadChildren: './admin/modules/admin.module#AdminModule', canActivate: [AuthGuard]},
+  { path: 'user', loadChildren: './user/modules/user.module#UserModule', canActivate: [AuthGuard]},
 
   { path: '**', redirectTo: 'login' }
 ];
