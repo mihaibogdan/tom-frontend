@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
     email: '',
     password: ''
   };
+  public isLoading = false;
+  public errorMessage = '';
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -48,19 +50,22 @@ export class LoginComponent implements OnInit {
 
   public login = (form) => {
     if (!form.valid) return;
+    this.isLoading = true;
+    this.errorMessage = '';
 
     let subject = this.authService.login(this.user.email, this.user.password);
 
     subject.subscribe(
       (res) => {
         let data = this.jwtHelper.decodeToken(this.authService.getAccessToken());
-
+        this.isLoading = false;
         if (data && data.role) {
           this.router.navigate([data.role]);
         }
       },
       (err) => {
-
+        this.isLoading = false;
+        this.errorMessage = err.error.message;
       }
     );
   }

@@ -45,6 +45,13 @@
     background-color: @purple;
     color: @white;
   }
+  &[disabled] {
+    opacity: 0.5;
+    &:hover {
+      background-color: inherit;
+      color: inherit;
+    }
+  }
 }
 
 .btn-with-icon {

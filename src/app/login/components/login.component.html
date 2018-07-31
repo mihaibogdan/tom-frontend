@@ -19,16 +19,23 @@
 </div>
 
 <div class="box" *ngIf="step === 'password'" [@FadeInOrOut]>
+  <div class="load-bar" *ngIf="isLoading">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
   <h1 class="box__heading">COMPANY</h1>
   <p class="box__welcome-message">{{user.email}}</p>
 
   <h2>Enter password</h2>
 
   <form #passwordForm="ngForm" (ngSubmit)="login(passwordForm)">
-    <div class="input" [ngClass]="{ error: password.invalid && passwordForm.submitted }">
-      <input #passwordInput type="password" name="password" [(ngModel)]="user.password" #password="ngModel" placeholder="Password" required>
+    <div class="input" [ngClass]="{ disabled: isLoading, error: password.invalid && passwordForm.submitted }">
+      <input [disabled]="isLoading" #passwordInput type="password" name="password" [(ngModel)]="user.password" #password="ngModel" placeholder="Password" required>
       <span class="input__hr"></span>
     </div>
+    <span class="error__message">{{errorMessage}}</span>
 
     <div class="checkbox">
       <input id="stay-signed-in" type="checkbox">
@@ -40,7 +47,7 @@
       <a class="link" (click)="enterUsername()">Sign in with a different account</a>
     </div>
 
-    <button class="btn btn--bigger">Sign in</button>
+    <button [disabled]="isLoading" class="btn btn--bigger">Sign in</button>
   </form>
 
   <div class="legal">
