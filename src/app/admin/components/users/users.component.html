@@ -13,10 +13,10 @@
     <h1>Users</h1>
     <div class="content">
       <div class="buttons">
-        <button class="btn btn-small">Set to Active</button>
-        <button class="btn btn-small">Suspend</button>
-        <button class="btn btn-small">Set to Admin</button>
-        <button class="btn btn-small">Set to User</button>
+        <button class="btn btn-small" (click)="updateUsers({active: true})">Set to Active</button>
+        <button class="btn btn-small" (click)="updateUsers({active: false})">Suspend</button>
+        <button class="btn btn-small" (click)="updateUsers({role: 'admin'})">Set to Admin</button>
+        <button class="btn btn-small" (click)="updateUsers({role: 'user'})">Set to User</button>
       </div>
 
       <table class="table">
@@ -40,7 +40,7 @@
           <tr *ngFor="let user of users; let i=index">
             <td class="checkbox-cell">
               <div class="checkbox checkbox--big">
-                <input id="select{{i + 1}}" type="checkbox">
+                <input id="select{{i + 1}}" type="checkbox" [(ngModel)]="user.selected">
                 <label for="select{{i + 1}}"></label>
               </div>
             </td>
