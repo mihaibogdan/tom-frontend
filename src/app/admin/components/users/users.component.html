@@ -31,8 +31,8 @@
           <tr>
             <th class="checkbox-cell">
               <div class="checkbox checkbox--big">
-                <input id="select-all" type="checkbox">
-                <label for="select-all"></label>
+                <input id="select-all" [(ngModel)]="selectedAll" type="checkbox">
+                <label for="select-all" (click)="toggleAll()"></label>
               </div>
             </th>
             <th class="index-cell">#</th>
@@ -44,11 +44,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of users; let i=index">
+          <tr *ngFor="let user of usersPerPage[currentPage]; let i=index">
             <td class="checkbox-cell">
               <div class="checkbox checkbox--big">
-                <input id="select{{i + 1}}" type="checkbox" [(ngModel)]="user.selected">
-                <label for="select{{i + 1}}"></label>
+                <input id="select{{currentPage + i + 1}}" type="checkbox" [(ngModel)]="user.selected" (ngModelChange)="toggleCheckbox()">
+                <label for="select{{currentPage + i + 1}}"></label>
               </div>
             </td>
             <td class="index-cell">{{i + 1}}</td>
@@ -60,6 +60,14 @@
           </tr>
         </tbody>
       </table>
+
+      <div class="pagination" *ngIf="usersPerPage.length > 1">
+        <span>Page {{currentPage + 1}} of {{usersPerPage.length}} ({{users.length}} item)</span>
+        <div class="controls">
+          <button (click)="previousPage()" [disabled]="currentPage === 0" class="btn icon-left-arrow"></button>
+          <button (click)="nextPage()" [disabled]="currentPage === usersPerPage.length - 1" class="btn icon-right-arrow"></button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

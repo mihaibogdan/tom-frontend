@@ -14,10 +14,15 @@ import { PRIVILEGES, IS_ACTIVE } from '../../../shared/utils/constants';
   styleUrls: ['./users.component.less']
 })
 export class UsersComponent implements OnInit {
-  private users;
+  private users = [];
   private subscription;
   private usersSubject = new Subject<string>();
 
+  private numberOfUsersPerPage = 25;
+  private usersPerPage = [];
+  private currentPage = 0;
+
+  public selectedAll = false;
   constructor( private userService: UserService,
                private authService: AuthService,
                private router: Router) {
@@ -43,19 +48,47 @@ export class UsersComponent implements OnInit {
         user.status = IS_ACTIVE[user.active];
         return user;
       });
+      this.usersPerPage = _.chunk(this.users, this.numberOfUsersPerPage);
     })
   };
 
   private updateUsers = (prop) => {
-    let usersToUpdate = _.filter(this.users, 'selected');
+    let usersToUpdate = _.filter(this.usersPerPage[this.currentPage], 'selected');
 
     _.each(usersToUpdate, (user) => {
       this.userService.updateUser(user.id, prop).then((res: any) => {
-        user = _.find(this.users, {id: user.id});
+        user = _.find(this.usersPerPage[this.currentPage], {id: user.id});
         user.privilege = PRIVILEGES[res.role];
         user.status = IS_ACTIVE[res.active];
       })
     });
+  };
+
+  public toggleAll = () => {
+    _.forEach(this.usersPerPage[this.currentPage], (user) => {
+      user.selected = !user.selected;
+    })
+  };
+
+  public toggleCheckbox = () => {
+    let numberOfItemsSelected = _.filter(this.usersPerPage[this.currentPage], 'selected').length;
+
+    this.selectedAll = numberOfItemsSelected ===  this.usersPerPage[this.currentPage].length;
+  };
+
+  public nextPage = () => {
+    if (this.currentPage < this.usersPerPage.length - 1) {
+      this.currentPage++;
+      this.selectedAll = false;
+      this.toggleCheckbox();
+    }
+  };
+
+  public previousPage = () => {
+    if (this.currentPage > 0) {
+      this.currentPage--;
+      this.toggleCheckbox();
+    }
   };
 
   public logout = () => {
