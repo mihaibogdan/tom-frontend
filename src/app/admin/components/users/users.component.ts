@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as _ from 'lodash';
 import { Subject, Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 import { UserService } from '../../../shared/services/user.service';
+import { AuthService } from '../../../shared/services/auth.service';
 import { PRIVILEGES, IS_ACTIVE } from '../../../shared/utils/constants';
 
 @Component({
@@ -16,7 +18,9 @@ export class UsersComponent implements OnInit {
   private subscription;
   private usersSubject = new Subject<string>();
 
-  constructor(private userService: UserService) {
+  constructor( private userService: UserService,
+               private authService: AuthService,
+               private router: Router) {
     this.subscription = this.usersSubject
       .pipe(debounceTime(200))
       .subscribe((name) => {
@@ -54,4 +58,8 @@ export class UsersComponent implements OnInit {
     });
   };
 
+  public logout = () => {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 }

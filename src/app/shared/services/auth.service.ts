@@ -119,4 +119,9 @@ export class AuthService {
   getRefreshToken = () => {
     return localStorage.getItem('refresh_token');
   };
+
+  public logout = () => {
+    this.setAccessToken(null);
+    this.setRefreshToken(null);
+  };
 }

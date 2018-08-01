@@ -51,6 +51,8 @@
       align-items: center;
       margin-left: auto;
       padding-right: 20px;
+      position: relative;
+      cursor: pointer;
 
       &:before {
         content: '';
@@ -89,6 +91,51 @@
         background-image: url('../images/avatar.png');
         background-position: 50% 50%;
         background-size: cover;
+      }
+
+      &:hover .user__menu {
+        top: 45px;
+        opacity: 1;
+        visibility: visible;
+      }
+      .user__menu {
+        position: absolute;
+        top: 40px;
+        width: 99%;
+        opacity: 0;
+        visibility: hidden;
+
+        transition: top 0.3s, opacity 0.3s, visibility 0.3s ease;
+        cursor: default;
+
+        .list {
+          background-color: @white;
+          box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0.12);
+
+          padding: 0 20px;
+          list-style: none;
+          margin-top: 28px;
+          margin-bottom: 0;
+
+          .list__item {
+            a {
+              display: inline-block;
+              cursor: pointer;
+              width: 100%;
+              padding: 15px 0;
+              border-bottom: solid 1px @grey;
+              text-align: center;
+              font-size: 14px;
+              color: #4d4f5c;
+            }
+
+            &:last-child {
+              a {
+                border-bottom: none;
+              }
+            }
+          }
+        }
       }
     }
   }
