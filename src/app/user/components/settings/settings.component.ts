@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { UserService } from '../../../shared/services/user.service';
+import { AuthService } from '../../../shared/services/auth.service';
 import { User } from '../../../shared/models/user.model';
 
 @Component({
@@ -16,7 +18,9 @@ export class SettingsComponent implements OnInit {
   public inlineEditing = {};
   public user: any = {};
 
-  constructor(private userService: UserService) { }
+  constructor( private userService: UserService,
+               private authService: AuthService,
+               private router: Router) { }
 
   ngOnInit() {
     this.userService.getProfile().then((user: any) => {
@@ -53,5 +57,10 @@ export class SettingsComponent implements OnInit {
     setTimeout(() => {
       this[`${input}Input`].nativeElement.focus();
     });
-  }
+  };
+
+  public logout = () => {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  };
 }

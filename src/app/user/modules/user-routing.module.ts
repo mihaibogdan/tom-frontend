@@ -6,7 +6,9 @@ import { SettingsComponent } from '../components/settings/settings.component';
 
 const userRoutes: Routes = [
   { path: '', component: UserComponent, children: [
-    { path: 'settings', component: SettingsComponent }
+    { path: 'settings', component: SettingsComponent },
+    { path: '**', redirectTo: 'settings' }
+
   ]},
 ];
 

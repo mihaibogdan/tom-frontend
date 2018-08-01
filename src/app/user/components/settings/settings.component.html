@@ -7,6 +7,13 @@
     <div class="user">
       <span class="name">{{user.firstName}} {{user.lastName}}</span>
       <div class="avatar"></div>
+
+      <div class="user__menu">
+        <ul class="list">
+          <li class="list__item"><a [routerLink]="['/user/settings']">Settings</a></li>
+          <li class="list__item"><a (click)="logout()">Logout</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 

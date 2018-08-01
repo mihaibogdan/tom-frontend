@@ -6,7 +6,10 @@ import { UsersComponent } from '../components/users/users.component';
 
 const adminRoutes: Routes = [
   { path: '', component: AdminComponent, children: [
-    { path: 'users', component: UsersComponent }
+    { path: 'users', component: UsersComponent },
+
+    { path: '**', redirectTo: 'users' }
+
   ]},
 ];
 
