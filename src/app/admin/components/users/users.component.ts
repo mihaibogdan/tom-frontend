@@ -17,10 +17,12 @@ export class UsersComponent implements OnInit {
   private users = [];
   private subscription;
   private usersSubject = new Subject<string>();
+  private name = '';
 
-  private numberOfUsersPerPage = 25;
-  private usersPerPage = [];
-  private currentPage = 0;
+  private numberOfUsersPerPage = 4;
+  private currentPage = 1;
+  private numberOfUsers = 0;
+  private numberOfPages = 0;
 
   public user = {};
 
@@ -31,7 +33,9 @@ export class UsersComponent implements OnInit {
     this.subscription = this.usersSubject
       .pipe(debounceTime(200))
       .subscribe((name) => {
-        this.getUsers({ name });
+        this.name = name;
+        this.selectedAll = false;
+        this.getUsers();
       });
   }
 
@@ -50,23 +54,32 @@ export class UsersComponent implements OnInit {
     })
   };
 
-  private getUsers = (params = {}) => {
+  private getUsers = () => {
+    let params = {
+      name: this.name,
+      limit: this.numberOfUsersPerPage,
+      page: this.currentPage
+    };
     this.userService.getUsers(params).then((res: any) => {
-      this.users = _.map(res, user => {
+      this.users = _.map(res.docs, user => {
         user.privilege = PRIVILEGES[user.role];
         user.status = IS_ACTIVE[user.active];
         return user;
       });
-      this.usersPerPage = _.chunk(this.users, this.numberOfUsersPerPage);
+      this.numberOfUsers = res.total;
+      this.numberOfPages = res.pages;
+      if (this.currentPage > this.numberOfPages) {
+        this.currentPage = this.numberOfPages;
+      }
     })
   };
 
   private updateUsers = (prop) => {
-    let usersToUpdate = _.filter(this.usersPerPage[this.currentPage], 'selected');
+    let usersToUpdate = _.filter(this.users, 'selected');
 
     _.each(usersToUpdate, (user) => {
       this.userService.updateUser(user.id, prop).then((res: any) => {
-        user = _.find(this.usersPerPage[this.currentPage], {id: user.id});
+        user = _.find(this.users, {id: user.id});
         user.privilege = PRIVILEGES[res.role];
         user.status = IS_ACTIVE[res.active];
       })
@@ -74,29 +87,30 @@ export class UsersComponent implements OnInit {
   };
 
   public toggleAll = () => {
-    _.forEach(this.usersPerPage[this.currentPage], (user) => {
-      user.selected = !user.selected;
+    _.forEach(this.users, (user) => {
+      user.selected = this.selectedAll;
     })
   };
 
   public toggleCheckbox = () => {
-    let numberOfItemsSelected = _.filter(this.usersPerPage[this.currentPage], 'selected').length;
+    let numberOfItemsSelected = _.filter(this.users, 'selected').length;
 
-    this.selectedAll = numberOfItemsSelected ===  this.usersPerPage[this.currentPage].length;
+    this.selectedAll = numberOfItemsSelected ===  this.numberOfUsersPerPage;
   };
 
   public nextPage = () => {
-    if (this.currentPage < this.usersPerPage.length - 1) {
+    if (this.currentPage < this.numberOfPages) {
       this.currentPage++;
       this.selectedAll = false;
-      this.toggleCheckbox();
+      this.getUsers();
     }
   };
 
   public previousPage = () => {
     if (this.currentPage > 0) {
       this.currentPage--;
-      this.toggleCheckbox();
+      this.selectedAll = false;
+      this.getUsers();
     }
   };
 
