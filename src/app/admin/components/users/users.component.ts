@@ -22,6 +22,8 @@ export class UsersComponent implements OnInit {
   private usersPerPage = [];
   private currentPage = 0;
 
+  public user = {};
+
   public selectedAll = false;
   constructor( private userService: UserService,
                private authService: AuthService,
@@ -35,11 +37,18 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.getUsers();
+    this.getCurrentUser();
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+  private getCurrentUser = () => {
+    this.userService.getProfile().then((res) => {
+      this.user = res;
+    })
+  };
 
   private getUsers = (params = {}) => {
     this.userService.getUsers(params).then((res: any) => {

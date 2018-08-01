@@ -5,7 +5,7 @@
       <input type="text" placeholder="Search users" (keyup)='usersSubject.next($event.target.value)'>
     </div>
     <div class="user">
-      <span class="name">John Doe</span>
+      <span class="name">{{user.firstName}} {{user.lastName}}</span>
       <div class="avatar"></div>
 
       <div class="user__menu">
