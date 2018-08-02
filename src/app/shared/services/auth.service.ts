@@ -78,6 +78,20 @@ export class AuthService {
     });
   };
 
+  public setPassword = (token: string, password: string) => {
+    return new Promise((resolve, reject) => {
+      this.http.put(`${environment.API_URL}/auth/set-password`, {token, password})
+        .subscribe(
+          (res: any) => {
+            resolve(res);
+          },
+          (err: any) => {
+            reject(err.error);
+          }
+        );
+    });
+  };
+
   public loggedIn = () => {
     let token = this.getAccessToken();
     return  token && !this.jwtHelper.isTokenExpired(token);

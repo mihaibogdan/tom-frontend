@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { FadeInOrOut } from '../../shared/animations/animations';
 
@@ -16,10 +17,19 @@ export class SetPasswordComponent implements OnInit {
   public isLoading = false;
   public user = {};
   public errors = {};
+  public queryParamsSub;
+  public token;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.queryParamsSub = this.route.queryParams.subscribe(params => {
+      this.token = params['token'];
+    });
+  }
+
+  ngOnDestroy() {
+    this.queryParamsSub.unsubscribe();
   }
 
   public setPassword = (form) => {
@@ -27,13 +37,14 @@ export class SetPasswordComponent implements OnInit {
     this.errorMessage = '';
     this.isLoading = true;
 
-    //this.authService.setPassword(form.value.password)
-    //  .then(() => {
-    //    this.isLoading = false;
-    //  })
-    //  .catch((err: any) => {
-    //    this.errorMessage = err.message;
-    //    this.isLoading = false;
-    //  });
+    this.authService.setPassword(this.token, form.value.password)
+      .then(() => {
+        this.isLoading = false;
+        this.router.navigate(['/login']);
+      })
+      .catch((err: any) => {
+        this.errorMessage = err.message;
+        this.isLoading = false;
+      });
   }
 }
