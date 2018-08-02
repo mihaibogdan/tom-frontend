@@ -12,7 +12,9 @@ import { AuthService } from '../../shared/services/auth.service';
 })
 export class ForgotPasswordComponent implements OnInit {
   public showForm = true;
-  public userEmail = '';
+  public errorMessage;
+  public isLoading = false;
+  public success = false;
 
   constructor(private authService: AuthService) { }
 
@@ -21,9 +23,17 @@ export class ForgotPasswordComponent implements OnInit {
 
   public resetPassword = (form) => {
     if (!form.valid) return;
+    this.errorMessage = '';
+    this.isLoading = true;
 
     this.authService.resetPassword(form.value.email)
-      .then(() => {})
-      .catch((err) => {});
+      .then(() => {
+        this.isLoading = false;
+        this.success = true;
+      })
+      .catch((err: any) => {
+        this.errorMessage = err.message;
+        this.isLoading = false;
+      });
   }
 }
