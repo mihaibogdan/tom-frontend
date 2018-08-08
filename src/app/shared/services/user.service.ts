@@ -37,6 +37,20 @@ export class UserService {
     });
   };
 
+  public checkUser = (email: string) => {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${environment.API_URL}/users/check`, {email})
+        .subscribe(
+          (res: any) => {
+            resolve(res);
+          },
+          (err: any) => {
+            reject(err.error);
+          }
+        );
+    });
+  };
+
   public getUsers = (params = {}) => {
     return new Promise((resolve, reject) => {
       this.http.get(`${environment.API_URL}/users`, { params })

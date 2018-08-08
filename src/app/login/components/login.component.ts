@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FadeInOrOut } from '../../shared/animations/animations';
 
 import { AuthService } from '../../shared/services/auth.service';
+import { UserService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -25,23 +26,34 @@ export class LoginComponent implements OnInit {
   public isLoading = false;
   public errorMessage = '';
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private userService: UserService, private router: Router) { }
 
   ngOnInit() {
   }
 
   public enterPassword = (form) => {
     if (!form.valid) return;
+    this.isLoading = true;
+    this.errorMessage = '';
 
-    this.step = 'password';
+    this.userService.checkUser(this.user.email)
+      .then(() => {
+        this.step = 'password';
+        this.isLoading = false;
 
-    setTimeout(() => {
-      this.passwordInput.nativeElement.focus();
-    })
+        setTimeout(() => {
+          this.passwordInput.nativeElement.focus();
+        })
+      })
+      .catch((err) => {
+        this.isLoading = false;
+        this.errorMessage = err.message;
+      })
   };
 
   public enterUsername = () => {
     this.step = 'username';
+    this.errorMessage = '';
 
     setTimeout(() => {
       this.emailInput.nativeElement.focus();
