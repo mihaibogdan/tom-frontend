@@ -146,6 +146,60 @@
       }
     }
   }
-
 }
 
+.file-upload {
+  input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  input + label {
+    font-weight: 400;
+    background-color: #f0f1f7;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #545871;
+    box-sizing: border-box;
+
+    margin-bottom: 0;
+    font-size: 16px;
+
+    cursor: pointer;
+    border-radius: 3px;
+
+
+    span {
+      max-width: 330px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    i {
+      margin-right: 7px;
+      color: #545871;
+    }
+  }
+
+  input:focus + label {
+    outline: none;
+  }
+
+  input + label * {
+    pointer-events: none;
+  }
+
+  &.hover {
+    input + label {
+      color: #545871;
+      border: dashed 1px #545871;
+    }
+  }
+}

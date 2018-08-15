@@ -87,10 +87,19 @@
         width: 44px;
         height: 44px;
         border-radius: 50%;
+        background-color: #f0f1f7;
+        position: relative;
+        overflow: hidden;
 
-        background-image: url('../images/avatar.png');
         background-position: 50% 50%;
         background-size: cover;
+
+        .icon-user {
+          font-size: 32px;
+          color: #545871;
+          position: absolute;
+          bottom: -5px;
+        }
       }
 
       &:hover .user__menu {
@@ -101,7 +110,7 @@
       .user__menu {
         position: absolute;
         top: 40px;
-        width: 99%;
+        width: 97%;
         opacity: 0;
         visibility: hidden;
 
