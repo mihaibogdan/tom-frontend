@@ -48,6 +48,10 @@ export class LoginComponent implements OnInit {
       .catch((err) => {
         this.isLoading = false;
         this.errorMessage = err.message;
+
+        setTimeout(() => {
+          this.emailInput.nativeElement.focus();
+        })
       })
   };
 
@@ -78,6 +82,10 @@ export class LoginComponent implements OnInit {
       (err) => {
         this.isLoading = false;
         this.errorMessage = err.error.message;
+
+        setTimeout(() => {
+          this.passwordInput.nativeElement.focus();
+        })
       }
     );
   }

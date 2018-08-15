@@ -5,8 +5,8 @@
     <div class="input" [ngClass]="{ error: email.invalid && usernameForm.submitted }">
       <input #emailInput type="text" placeholder="Email" name="email" [(ngModel)]="user.email" #email="ngModel" required email>
       <span class="input__hr"></span>
-      <span class="error__message">{{errorMessage}}</span>
     </div>
+    <span class="error__message">{{errorMessage}}</span>
 
     <a [routerLink]="['/register']" class="link signup-reference">No account? Create one!</a>
 

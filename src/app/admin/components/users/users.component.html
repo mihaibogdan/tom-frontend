@@ -6,7 +6,9 @@
     </div>
     <div class="user">
       <span class="name">{{user.firstName}} {{user.lastName}}</span>
-      <div class="avatar"></div>
+      <div class="avatar" [ngStyle]="{ 'background-image': 'url(' + (user.profilePicture ? user.profilePicture : '') + ')'}">
+        <i class="icon-user" *ngIf="!user.profilePicture"></i>
+      </div>
 
       <div class="user__menu">
         <ul class="list">
